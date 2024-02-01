@@ -13,19 +13,66 @@ The Successfactors OData Sandbox is a Python application that provides a user in
 - **Shortest Path Finder:** Find the shortest path between two entities, considering specified navigation entities and excluding others.
 - **User-Friendly Interface:** Utilizes Tkinter for a simple and interactive user interface.
 
+## Fetching OData Metadata
+
+To retrieve the entire metadata of an instance, you can use the OData API call: https://<$hostname$>/odata/v2/$metadata
+
+### Hostnames for Different Environments
+
+Here is a list of hostnames based on SAP Support Knowledge Base [Note 2215682](https://userapps.support.sap.com/sap/support/knowledge/en/2215682):
+
+- **Development Environment (Example):**
+  - Hostname: `https://api68sales.successfactors.com`
+
+- **Quality Assurance Environment (Example):**
+  - Hostname: `https://api4preview.sapsf.com`
+
+- **Production Environment (Example):**
+  - Hostname: `https://api4.successfactors.com`
+
+### Using Postman
+
+You can also use [Postman](https://www.postman.com/) to make the API call:
+
+1. Open Postman.
+
+2. Set the HTTP method to `GET`.
+
+3. Enter the API endpoint in the URL bar: https://<$hostname$>/odata/v2/$metadata
+
+4. Select basic authentication where username, company ID, and password are combined into a string as such: username@company ID:password
+
+
+5. Click on the "Send" button to make the API call.
+
+This will fetch the entire metadata of the OData instance, providing detailed information about entities, properties, and relationships.
+
+Note: Make sure to replace `<hostname>` with the actual hostname corresponding to the environment you are working on.
+
+
+
+
 ## Project Structure
 
-Successfactors-OData-Sandbox/
-├── gui/
-│   └── app.py
-├── odata_utils/
-│   ├── __init__.py
-│   ├── graph_utils.py
-│   ├── xml_parser.py
-├── main.py
-├── requirements.txt
-└── setup.py
 
+
+<body>
+    <pre>
+        <code>
+Successfactors-OData-Sandbox/
+|-- gui/
+|   |-- __init__.py
+|   └── app.py
+|-- odata_utils/
+|   |-- __init__.py
+|   |-- graph_utils.py
+|   └── xml_parser.py
+|-- main.py
+|-- requirements.txt
+|-- setup.py
+        </code>
+    </pre>
+</body>
 
 
 - **`gui/`**: Contains the Tkinter-based GUI application.
