@@ -45,6 +45,8 @@ You can also use [Postman](https://www.postman.com/) to make the API call:
 
 5. Click on the "Send" button to make the API call.
 
+6. Save the received metadata EMDX file body as a XML file and later use it in the appliaction. 
+
 This will fetch the entire metadata of the OData instance, providing detailed information about entities, properties, and relationships.
 
 Note: Make sure to replace `<hostname>` with the actual hostname corresponding to the environment you are working on.
@@ -67,6 +69,8 @@ Successfactors-OData-Sandbox/
 |   |-- __init__.py
 |   |-- graph_utils.py
 |   └── xml_parser.py
+|-- dist/
+|   └── main.exe
 |-- main.py
 |-- requirements.txt
 |-- setup.py
@@ -95,17 +99,72 @@ Successfactors-OData-Sandbox/
     cd Successfactors-OData-Sandbox
     ```
 
-3. **Install dependencies:**
+3. **Create and activate a virtual environment:**
+
+    ```bash
+    python -m venv venv
+    source venv/bin/activate      # On Linux/macOS
+    .\venv\Scripts\activate       # On Windows
+    ```
+
+4. **Install dependencies:**
 
     ```bash
     pip install -r requirements.txt
     ```
 
-4. **Run the application:**
+5. **Run the application:**
 
     ```bash
     python main.py
     ```
+
+6. **Deactivate the virtual environment (when done):**
+
+    ```bash
+    deactivate
+    ```
+
+## Creating Executables with PyInstaller
+
+You can use [PyInstaller](https://www.pyinstaller.org/) to create standalone executables for your Python applications on Windows and macOS. Follow the steps below to create executables for the Successfactors OData Sandbox:
+
+### 1. Install PyInstaller
+
+Open a terminal and install PyInstaller using the following command:
+
+```bash
+pip install pyinstaller 
+```
+
+### 2. Navigate to the Project Directory
+Go to the directory where your main.py file is located.
+
+```bash
+cd /path/to/Successfactors-OData-Sandbox
+```
+
+### 3. Create Executable for Windows or macOS
+Run the following command to create an executable for Windows:
+
+```bash
+pyinstaller --onefile --windowed main.py
+```
+This command generates a standalone executable (main.exe in Windows) or executable (main.app in macOS) in the dist directory.
+
+
+
+### 4.  Run the Executable
+Navigate to the dist directory and run the generated executable:
+
+For Windows: Double-click on main.exe.
+For macOS: Double-click on main.app.
+Now, you can distribute the executable files without requiring users to have Python installed.
+
+Note: PyInstaller might include some additional files in the dist directory. You can distribute the entire directory for the application to work properly.
+
+
+
 
 ## Usage
 
