@@ -1,6 +1,7 @@
 import tkinter as tk
 from tkinter import ttk, filedialog
 from odata_utils.xml_parser import get_entity_list, entity_types_parse_xml, get_property_list
+import re
 
 class App:
     def __init__(self, root):

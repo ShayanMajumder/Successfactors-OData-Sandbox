@@ -4,6 +4,9 @@
 
 The Successfactors OData Sandbox is a Python application that provides a user interface for analyzing OData metadata and finding the shortest path between entities using a graph-based approach.
 
+![Application Screenshot](Screenshot.png)
+
+
 ## Features
 
 - **Entity Metadata Analysis:** Browse and analyze OData entity metadata from XML files.
@@ -13,15 +16,16 @@ The Successfactors OData Sandbox is a Python application that provides a user in
 ## Project Structure
 
 Successfactors-OData-Sandbox/
-|-- gui/
-| |-- app.py
-|-- odata_utils/
-| |-- init.py
-| |-- graph_utils.py
-| |-- xml_parser.py
-|-- main.py
-|-- requirements.txt
-|-- setup.py
+├── gui/
+│   └── app.py
+├── odata_utils/
+│   ├── __init__.py
+│   ├── graph_utils.py
+│   ├── xml_parser.py
+├── main.py
+├── requirements.txt
+└── setup.py
+
 
 
 - **`gui/`**: Contains the Tkinter-based GUI application.
