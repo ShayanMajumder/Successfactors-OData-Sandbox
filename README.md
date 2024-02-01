@@ -4,7 +4,7 @@
 
 The Successfactors OData Sandbox is a Python application that provides a user interface for analyzing OData metadata and finding the shortest path between entities using a graph-based approach.
 
-![Application Screenshot](Screenshot.png)
+![Application Screenshot](Images/Screenshot.png)
 
 
 ## Features
@@ -33,6 +33,8 @@ Here is a list of hostnames based on SAP Support Knowledge Base [Note 2215682](h
 ### Using Postman
 
 You can also use [Postman](https://www.postman.com/) to make the API call:
+![PostMan Screenshot](Images/PostMan.jpeg)
+
 
 1. Open Postman.
 
