@@ -15,7 +15,7 @@ The Successfactors OData Sandbox is a Python application that provides a user in
 
 ## Fetching OData Metadata
 
-To retrieve the entire metadata of an instance, you can use the OData API call: https://<hostname>/odata/v2/$metadata
+To retrieve the entire metadata of an instance, you can use the OData API call: https://<$hostname$>/odata/v2/$metadata
 
 ### Hostnames for Different Environments
 
@@ -40,7 +40,7 @@ You can also use [Postman](https://www.postman.com/) to make the API call:
 
 2. Set the HTTP method to `GET`.
 
-3. Enter the API endpoint in the URL bar: https://<hostname>/odata/v2/$metadata
+3. Enter the API endpoint in the URL bar: https://<$hostname$>/odata/v2/$metadata
 
 4. Select basic authentication where username, company ID, and password are combined into a string as such: username@company ID:password
 
