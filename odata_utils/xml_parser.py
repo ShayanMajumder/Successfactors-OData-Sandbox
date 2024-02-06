@@ -25,6 +25,16 @@ def delete_keys_from_hashmap(hashmap, keys_to_delete):
     for key in keys_list:
         hashmap[key] = {}
 
+def add_value_to_dict_set(dictionary, key, value=""):
+    # Check if the key already exists in the dictionary
+    if key in dictionary:
+        # If the key exists, add the value to the existing set
+        dictionary[key].add(value)
+    else:
+        # If the key does not exist, create a new set with the provided value
+        dictionary[key] = {value}
+
+
 def get_entity_list(xml_file_path):
     try:
         tree = ET.parse(xml_file_path)
@@ -46,6 +56,41 @@ def get_entity_list(xml_file_path):
             entity_list.append(entity_type_name)
         entity_list = sorted(entity_list)
         return entity_list
+
+    except Exception as e:
+        print(f"Error: {e}")
+
+def get_navigation_list(xml_file_path):
+    try:
+        tree = ET.parse(xml_file_path)
+        root = tree.getroot()
+
+        namespace = {
+            "edmx": "http://schemas.microsoft.com/ado/2007/06/edmx",
+            "atom": "http://www.w3.org/2005/Atom",
+            "m": "http://schemas.microsoft.com/ado/2007/08/dataservices/metadata",
+            "default": "http://schemas.microsoft.com/ado/2008/09/edm",
+            "sf": "http://www.successfactors.com/edm/sf",
+            "sap": "http://www.successfactors.com/edm/sap",
+        }
+        navigation_list = []
+        entity_types = root.findall(".//default:EntityType", namespaces=namespace)
+        for entity_type in entity_types:
+            entity_type_name = entity_type.get("Name")
+            # if(entity_type_name == "EmpEmployment"):
+            # print(f"EntityType Name = {entity_type_name}")
+
+            # Find all NavigationProperty elements within the current EntityType
+            navigation_properties = entity_type.findall(
+                ".//default:NavigationProperty", namespaces=namespace
+            )
+
+            for nav_property in navigation_properties:
+                nav_name = nav_property.get("Name")
+                navigation_list.append(nav_name)
+
+            #    print(f"Navigation Property {nav_name} = {from_role},{to_role},{nav_name}")
+        return navigation_list
 
     except Exception as e:
         print(f"Error: {e}")
@@ -168,12 +213,13 @@ def get_property_list(xml_file_path,name):
                 property_name = (
                     property.get("Name")
                     + " (Property) "
-                    + "abcd 1) upsertable="
+                    + "( upsertable="
                     + upsertable
-                    +"abcd 2) required="
+                    +",required="
                     + required
-                    +"abcd 3) picklist="
+                    +",picklist="
                     + picklist
+                    + ")"
                 )
                 add_value_to_dict_set(dict_of_entity_elements, entity_type_name, property_name)
 
@@ -206,14 +252,15 @@ def get_property_list(xml_file_path,name):
                 property_name = (
                     property.get("Name")
                     + " (NavigationProperty) "
-                    + "abcd 1) Entity="
+                    + "(Entity="
                     + points_to
-                    + "abcd 2) upsertable="
+                    + ",upsertable="
                     + upsertable
-                    +"abcd 3) required="
+                    +",required="
                     +required
-                    +"abcd 4) multiplicity="
+                    +",multiplicity="
                     +multiplicity
+                    +")"
                 )
                 add_value_to_dict_set(dict_of_entity_elements, entity_type_name, property_name)
 
